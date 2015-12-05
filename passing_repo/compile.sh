@@ -1,1 +1,0 @@
-javac -cp libs/junit-4.12.jar src/*.java
