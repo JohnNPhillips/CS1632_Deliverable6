@@ -32,7 +32,8 @@ if [[ $failcount != "0" ]]; then
 	fi
 else
 	echo "All tests pass, proceeding with commit."
-	echo "==========================";		
+		
 fi
+echo "==========================";	
 
 
