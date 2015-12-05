@@ -23,15 +23,16 @@ do
 done
 
 if [[ $failcount != "0" ]]; then
+	echo "Number of failures: $failcount"
 	echo "Do you want to continue with the commit? Y/N"
 	read input
 	if [[ $input != "Y" ]]; then
 		echo "Did not commit."
 		exit 1
 	fi
+else
+	echo "All tests pass, proceeding with commit."
+	echo "==========================";		
 fi
-
-echo "All tests pass, proceeding with commit."
-echo "==========================";
 
 
