@@ -8,6 +8,8 @@
 # To enable this hook, rename this file to "pre-commit".
 
 echo "=== Running Repo Tests ==="
+exec < /dev/tty
+declare failcount=0
 
 for file in ./tests/*
 do
@@ -15,11 +17,21 @@ do
 	bash $file
 	ec=$?
 	if [ $ec != "0" ]; then
-		echo "Test failure! Commit aborted."
-		exit 1
+		echo "Test failed: $file"
+		failcount=$((failcount + 1))
 	fi
 done
 
+if [[ $failcount != "0" ]]; then
+	echo "Do you want to continue with the commit? Y/N"
+	read input
+	if [[ $input != "Y" ]]; then
+		echo "Did not commit."
+		exit 1
+	fi
+fi
+
 echo "All tests pass, proceeding with commit."
 echo "==========================";
+echo "$failcount"
 
