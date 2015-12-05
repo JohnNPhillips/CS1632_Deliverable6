@@ -33,5 +33,5 @@ fi
 
 echo "All tests pass, proceeding with commit."
 echo "==========================";
-echo "$failcount"
+
 
